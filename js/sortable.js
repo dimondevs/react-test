@@ -19,7 +19,7 @@
             var self = this;
             var el = self.element;
             var th = $(el).find('th');
-            var trArr = $(el).find('tr').toArray();
+            var trArr = $(el).find('tbody tr').toArray();
             $(th).on('click', function() {
                 var index = $(this).index();
                 self.sortTable(trArr, index);
@@ -37,7 +37,11 @@
                 }
                 return 0;
             });
-            $('#result tbody').html(arr2);
+            console.log(arr2);
+            $('#result tbody').empty();
+            $.each(arr2, function(idx, item) {
+                $('#result tbody').append($(item));
+            });
         }
     });
     $.fn[pluginName] = function(options) {
