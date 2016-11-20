@@ -1,0 +1,10 @@
+.table {
+    display: none;
+}
+caption {
+    caption-side: top;
+    text-align: center;
+    text-transform: uppercase;
+    color: #000;
+    font-size: 20px;
+}
