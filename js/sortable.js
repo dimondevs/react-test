@@ -13,7 +13,7 @@
     }
     $.extend(Plugin.prototype, {
         init: function() {
-            this.getTable(this);
+            this.getTable();
         },
         getTable: function() {
             var self = this;
@@ -26,8 +26,18 @@
             });
         },
         sortTable: function(arr, idx) {
-            console.log(arr);
-            console.log(idx);
+            var arr2 = arr.sort(function(tr1, tr2) {
+                var td1 = $(tr1).find('td').eq(idx).text();
+                var td2 = $(tr2).find('td').eq(idx).text();
+                if (td1 < td2) {
+                    return -1;
+                }
+                if (td1 > td2) {
+                    return 1;
+                }
+                return 0;
+            });
+            $('#result tbody').html(arr2);
         }
     });
     $.fn[pluginName] = function(options) {
