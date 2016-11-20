@@ -10,7 +10,7 @@ $(function() {
         })
         .then(function(data) {
             var content = '';
-            $.each(data.results, function(item) {
+            $.each(data.results, function(idx, item) {
                 content += '<tr>';
                 content += '<td>' + item.id + '</td>';
                 content += '<td>' + item.original_title + '</td>';
@@ -23,6 +23,7 @@ $(function() {
             });
             $('#result tbody').html(content);
             $('#result').fadeIn();
+            $('#result').sortable();
         })
     });
 })
