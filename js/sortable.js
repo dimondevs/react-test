@@ -34,9 +34,13 @@
                 state.index = $(this).index();
                 if (count === 1) {
                     state.type = 'desc';
+                    $(self.thead).removeClass('ask');
+                    $(this).addClass('desc');
                 } else {
                     state.type = 'asc';
                     count = 0;
+                    $(self.thead).removeClass('desc');
+                    $(this).addClass('ask');
                 }
                 count++;
                 self.sortRows(self.rows, state);
@@ -50,11 +54,11 @@
             var sortingRows = arr.sort(function(tr1, tr2) {
                 var td1 = $(tr1).find('td').eq(state.index).text();
                 var td2 = $(tr2).find('td').eq(state.index).text();
-                if (self.isNumeric(td1) === true) {
-                    td1 = +td1;
+                if (self.isNumeric(td1) === true && state.index !== 1) {
+                    td1 = parseFloat(td1);
                 }
-                if (self.isNumeric(td2) === true) {
-                    td2 = +td2;
+                if (self.isNumeric(td2) === true && state.index !== 1) {
+                    td2 = parseFloat(td2);
                 }
                 if (td1 < td2) {
                     return state.type === 'desc' ? 1 : -1;
