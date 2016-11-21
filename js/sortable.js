@@ -1,9 +1,7 @@
 ;(function($, window, document, undefined) {
     'use strict';
     var pluginName = 'sortable',
-        defaults = {
-            propertyName: 'value'
-        };
+        defaults = {};
     function Plugin (element, options) {
         this.element = $(element);
         this.tbody = this.element.find('tbody');
@@ -44,6 +42,7 @@
                     $(this).addClass('ask');
                 }
                 count++;
+                state.content = $(this).data('content');
                 self.sortRows(rows, state);
             });
         },
@@ -55,10 +54,8 @@
             var sortingRows = arr.sort(function(tr1, tr2) {
                 var td1 = $(tr1).find('td').eq(state.index).text();
                 var td2 = $(tr2).find('td').eq(state.index).text();
-                if (self.isNumeric(td1) === true && state.index !== 1) {
+                if (self.isNumeric(td1) === true && state.content === 'number' || self.isNumeric(td2) === true && state.content === 'number') {
                     td1 = parseFloat(td1);
-                }
-                if (self.isNumeric(td2) === true && state.index !== 1) {
                     td2 = parseFloat(td2);
                 }
                 if (td1 < td2) {
