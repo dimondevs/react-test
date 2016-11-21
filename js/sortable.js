@@ -30,6 +30,7 @@
             var self = this;
             var count = 0;
             self.thead.on('click', function() {
+                var rows = self.tbody.find('tr').toArray();
                 var state = {};
                 state.index = $(this).index();
                 if (count === 1) {
@@ -43,7 +44,7 @@
                     $(this).addClass('ask');
                 }
                 count++;
-                self.sortRows(self.rows, state);
+                self.sortRows(rows, state);
             });
         },
         isNumeric: function(n) {
