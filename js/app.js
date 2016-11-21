@@ -21,7 +21,8 @@ $(function() {
                 content += '<td>' + item.release_date + '</td>';
                 content += '</tr>';
             });
-            $('#result tbody').html(content);
+            $('#result tbody').empty();
+            $('#result tbody').append(content);
             $('#result').fadeIn();
             $('#result').sortable();
         })
